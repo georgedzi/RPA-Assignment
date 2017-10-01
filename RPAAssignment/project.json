@@ -1,0 +1,14 @@
+{
+  "name": "CGIAssignment",
+  "description": "This assignment is part of CGIs job application",
+  "main": "Main.xaml",
+  "dependencies": {},
+  "excludedData": [
+    "Private:*",
+    "*password*"
+  ],
+  "toolVersion": "17.1.6407.26740",
+  "projectVersion": "1.0.6418.26256",
+  "packOptions": {},
+  "runtimeOptions": {}
+}

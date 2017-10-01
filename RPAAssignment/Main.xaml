@@ -1,0 +1,1437 @@
+﻿<Activity mc:Ignorable="sap sap2010 sads" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap2010:WorkflowViewState.IdRef="Main_1"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing"
+ xmlns:sd1="clr-namespace:System.Data;assembly=System.Data"
+ xmlns:snm="clr-namespace:System.Net.Mail;assembly=System"
+ xmlns:ui="http://schemas.uipath.com/workflow/activities"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>Orc.SystemInfo</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Core.Activities</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>Orc.SystemInfo</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="scg:List(x:String)" Name="sectionOneList" />
+      <Variable x:TypeArguments="scg:List(x:String)" Name="sectionTwoList" />
+      <Variable x:TypeArguments="scg:List(x:String)" Name="sectionThreeList" />
+      <Variable x:TypeArguments="x:String" Name="userName">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String" Value="" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="userAddress">
+        <Variable.Default>
+          <Literal x:TypeArguments="x:String" Value="" />
+        </Variable.Default>
+      </Variable>
+      <Variable x:TypeArguments="x:String" Name="contactNumber" />
+      <Variable x:TypeArguments="x:String" Name="serviceInfo" />
+      <Variable x:TypeArguments="x:String" Name="userNumber" />
+      <Variable x:TypeArguments="scg:List(x:Double)" Name="AmountList" />
+    </Flowchart.Variables>
+    <Flowchart.StartNode>
+      <FlowStep x:Name="__ReferenceID5" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+        <Sequence DisplayName="Download Attachment" sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="messages" />
+            <Variable x:TypeArguments="x:String" Name="email" />
+            <Variable x:TypeArguments="x:String" Name="password" />
+          </Sequence.Variables>
+          <ui:InputDialog Options="{x:Null}" DisplayName="Input dialog" sap2010:WorkflowViewState.IdRef="InputDialog_3" IsPassword="False" Label="Gmail Login" Title="Input Email">
+            <ui:InputDialog.Result>
+              <OutArgument x:TypeArguments="x:String">[email]</OutArgument>
+            </ui:InputDialog.Result>
+          </ui:InputDialog>
+          <ui:InputDialog Options="{x:Null}" DisplayName="Input dialog" sap2010:WorkflowViewState.IdRef="InputDialog_4" IsPassword="True" Label="Gmail Login" Title="Input Password">
+            <ui:InputDialog.Result>
+              <OutArgument x:TypeArguments="x:String">[password]</OutArgument>
+            </ui:InputDialog.Result>
+          </ui:InputDialog>
+          <ui:GetIMAPMailMessages TimeoutMS="{x:Null}" DeleteMessages="False" DisplayName="Get IMAP mail messages" Email="[email]" EnableSSL="True" sap2010:WorkflowViewState.IdRef="GetIMAPMailMessages_3" MailFolder="Inbox" MarkAsRead="False" Messages="[messages]" OnlyUnreadMessages="False" Password="[password]" Port="993" SecureConnection="Auto" Server="imap.gmail.com" Top="20" />
+          <ui:ForEach x:TypeArguments="snm:MailMessage" DisplayName="For each" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[messages]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="snm:MailMessage">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="mail" />
+                </ActivityAction.Argument>
+                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_36">
+                  <If Condition="[mail.Subject.Contains(&quot;Assignment&quot;)]" sap2010:WorkflowViewState.IdRef="If_2">
+                    <If.Then>
+                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_6">
+                        <ui:SaveMailAttachments Attachments="{x:Null}" DisplayName="Save Attachments" FolderPath="attachments" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_3" Message="[mail]" />
+                        <ui:Break sap2010:WorkflowViewState.IdRef="Break_1" />
+                      </Sequence>
+                    </If.Then>
+                  </If>
+                </Sequence>
+              </ActivityAction>
+            </ui:ForEach.Body>
+          </ui:ForEach>
+        </Sequence>
+        <FlowStep.Next>
+          <FlowStep x:Name="__ReferenceID8" sap2010:WorkflowViewState.IdRef="FlowStep_12">
+            <Sequence DisplayName="Instantiate Lists" sap2010:WorkflowViewState.IdRef="Sequence_42">
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_35">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="scg:List(x:String)">[sectionOneList]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="scg:List(x:String)">[new List(of String)]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_36">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="scg:List(x:String)">[sectionTwoList]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="scg:List(x:String)">[new List(of String)]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_34">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="scg:List(x:String)">[sectionThreeList]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="scg:List(x:String)">[new List(of String)]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_103">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="scg:List(x:Double)">[AmountList]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="scg:List(x:Double)">[new List(of Double)]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+            <FlowStep.Next>
+              <FlowStep x:Name="__ReferenceID9" sap2010:WorkflowViewState.IdRef="FlowStep_13">
+                <Flowchart DisplayName="Fill Lists" sap2010:WorkflowViewState.IdRef="Flowchart_2">
+                  <Flowchart.StartNode>
+                    <FlowStep x:Name="__ReferenceID1" sap2010:WorkflowViewState.IdRef="FlowStep_15">
+                      <Sequence DisplayName="Populate Sections 1and2" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="x:String" Name="readPDF" />
+                          <Variable x:TypeArguments="scg:List(x:String)" Name="pdfList" />
+                          <Variable x:TypeArguments="x:Boolean" Default="False" Name="sectionTwoFound" />
+                        </Sequence.Variables>
+                        <ui:ReadPDFWithOCR DisplayName="Read PDF with OCR" FileName="attachments\Sample_Credit_Card statement.pdf" sap2010:WorkflowViewState.IdRef="ReadPDFWithOCR_4" Range="All" Text="[readPDF]">
+                          <ui:ReadPDFWithOCR.OCREngine>
+                            <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                              <ActivityFunc.Argument>
+                                <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                              </ActivityFunc.Argument>
+                              <ui:MicrosoftOCR FilterRegion="{x:Null}" Text="{x:Null}" DisplayName="Microsoft OCR" ExtractWords="False" sap2010:WorkflowViewState.IdRef="MicrosoftOCR_2" Image="[Image]" Language="English" Profile="Scan" Scale="1" />
+                            </ActivityFunc>
+                          </ui:ReadPDFWithOCR.OCREngine>
+                        </ui:ReadPDFWithOCR>
+                        <ui:ForEach x:TypeArguments="x:String" DisplayName="For each" sap2010:WorkflowViewState.IdRef="ForEach`1_27" Values="[readPDF.Split({Environment.NewLine, &quot; &quot;}, StringSplitOptions.None)]">
+                          <ui:ForEach.Body>
+                            <ActivityAction x:TypeArguments="x:String">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+                              </ActivityAction.Argument>
+                              <If Condition="[item.Contains(&quot;Extra&quot;)]" sap2010:WorkflowViewState.IdRef="If_33">
+                                <If.Then>
+                                  <ui:Break sap2010:WorkflowViewState.IdRef="Break_9" />
+                                </If.Then>
+                                <If.Else>
+                                  <AddToCollection x:TypeArguments="x:String" Collection="[sectionOneList]" DisplayName="Add to collection" sap2010:WorkflowViewState.IdRef="AddToCollection`1_16" Item="[item]" />
+                                </If.Else>
+                              </If>
+                            </ActivityAction>
+                          </ui:ForEach.Body>
+                        </ui:ForEach>
+                        <ui:ForEach x:TypeArguments="x:String" DisplayName="For each" sap2010:WorkflowViewState.IdRef="ForEach`1_30" Values="[readPDF.Split({Environment.NewLine}, StringSplitOptions.None)]">
+                          <ui:ForEach.Body>
+                            <ActivityAction x:TypeArguments="x:String">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+                              </ActivityAction.Argument>
+                              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_51">
+                                <If Condition="[item.Contains(&quot;Payment&quot;)]" sap2010:WorkflowViewState.IdRef="If_42">
+                                  <If.Then>
+                                    <ui:Break sap2010:WorkflowViewState.IdRef="Break_12" />
+                                  </If.Then>
+                                </If>
+                                <If Condition="[item.Contains(&quot;Extra&quot;)]" sap2010:WorkflowViewState.IdRef="If_40">
+                                  <If.Then>
+                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_42">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Boolean">[sectionTwoFound]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </If.Then>
+                                </If>
+                                <If Condition="[sectionTwoFound]" sap2010:WorkflowViewState.IdRef="If_41">
+                                  <If.Then>
+                                    <AddToCollection x:TypeArguments="x:String" Collection="[sectionTwoList]" DisplayName="Add to collection" sap2010:WorkflowViewState.IdRef="AddToCollection`1_19" Item="[item]" />
+                                  </If.Then>
+                                </If>
+                              </Sequence>
+                            </ActivityAction>
+                          </ui:ForEach.Body>
+                        </ui:ForEach>
+                      </Sequence>
+                      <FlowStep.Next>
+                        <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_14">
+                          <Sequence DisplayName="Populate Section 3" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                            <Sequence.Variables>
+                              <Variable x:TypeArguments="x:String" Name="readPDF" />
+                              <Variable x:TypeArguments="x:Boolean" Default="False" Name="sectionThreeFound" />
+                            </Sequence.Variables>
+                            <ui:ReadPDFWithOCR DisplayName="Read PDF with OCR" FileName="attachments\Sample_Credit_Card statement.pdf" sap2010:WorkflowViewState.IdRef="ReadPDFWithOCR_3" Range="All" Text="[readPDF]">
+                              <ui:ReadPDFWithOCR.OCREngine>
+                                <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                                  <ActivityFunc.Argument>
+                                    <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                                  </ActivityFunc.Argument>
+                                  <ui:GoogleOCR FilterRegion="{x:Null}" Text="{x:Null}" AllowedCharacters="" DeniedCharacters="" DisplayName="Google OCR" ExtractWords="False" sap2010:WorkflowViewState.IdRef="GoogleOCR_2" Image="[Image]" Invert="False" Language="eng" Profile="Scan" Scale="2" />
+                                </ActivityFunc>
+                              </ui:ReadPDFWithOCR.OCREngine>
+                            </ui:ReadPDFWithOCR>
+                            <ui:ForEach x:TypeArguments="x:String" DisplayName="For each" sap2010:WorkflowViewState.IdRef="ForEach`1_26" Values="[readPDF.Split({Environment.NewLine}, StringSplitOptions.None)]">
+                              <ui:ForEach.Body>
+                                <ActivityAction x:TypeArguments="x:String">
+                                  <ActivityAction.Argument>
+                                    <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+                                  </ActivityAction.Argument>
+                                  <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                                    <If Condition="[item.Contains(&quot;Payments&quot;)]" sap2010:WorkflowViewState.IdRef="If_27">
+                                      <If.Then>
+                                        <Assign sap2010:WorkflowViewState.IdRef="Assign_37">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Boolean">[sectionThreeFound]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </If.Then>
+                                    </If>
+                                    <If Condition="[sectionThreeFound]" sap2010:WorkflowViewState.IdRef="If_28">
+                                      <If.Then>
+                                        <AddToCollection x:TypeArguments="x:String" Collection="[sectionThreeList]" DisplayName="Add to collection" sap2010:WorkflowViewState.IdRef="AddToCollection`1_13" Item="[item]" />
+                                      </If.Then>
+                                    </If>
+                                  </Sequence>
+                                </ActivityAction>
+                              </ui:ForEach.Body>
+                            </ui:ForEach>
+                          </Sequence>
+                        </FlowStep>
+                      </FlowStep.Next>
+                    </FlowStep>
+                  </Flowchart.StartNode>
+                  <x:Reference>__ReferenceID0</x:Reference>
+                  <x:Reference>__ReferenceID1</x:Reference>
+                </Flowchart>
+                <FlowStep.Next>
+                  <FlowStep x:Name="__ReferenceID6" sap2010:WorkflowViewState.IdRef="FlowStep_9">
+                    <Sequence DisplayName="Populate WordDoc" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:String" Name="docInfo" />
+                        <Variable x:TypeArguments="x:Boolean" Default="False" Name="nameFound" />
+                        <Variable x:TypeArguments="x:String" Name="variable1" />
+                        <Variable x:TypeArguments="x:Int32" Default="0" Name="nameCounter" />
+                        <Variable x:TypeArguments="x:Boolean" Default="False" Name="addressFound" />
+                      </Sequence.Variables>
+                      <ui:ForEach x:TypeArguments="x:String" DisplayName="For each" sap2010:WorkflowViewState.IdRef="ForEach`1_23" Values="[sectionOneList]">
+                        <ui:ForEach.Body>
+                          <ActivityAction x:TypeArguments="x:String">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+                            </ActivityAction.Argument>
+                            <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                              <If Condition="[item.Equals(&quot;How&quot;)]" sap2010:WorkflowViewState.IdRef="If_14">
+                                <If.Then>
+                                  <ui:Break sap2010:WorkflowViewState.IdRef="Break_6" />
+                                </If.Then>
+                              </If>
+                              <If Condition="[item.Equals(&quot;Account&quot;)]" sap2010:WorkflowViewState.IdRef="If_13">
+                                <If.Then>
+                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_29">
+                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_15">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Boolean">[nameFound]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <If Condition="[nameFound]" sap2010:WorkflowViewState.IdRef="If_12">
+                                <If.Then>
+                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_28">
+                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_13">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[userName]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[userName + item + " "]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <If Condition="[item.Equals(&quot;Member&quot;)]" sap2010:WorkflowViewState.IdRef="If_11">
+                                <If.Then>
+                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_30">
+                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_12">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Boolean">[nameFound]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                              <If Condition="[addressFound]" sap2010:WorkflowViewState.IdRef="If_16">
+                                <If.Then>
+                                  <Assign sap2010:WorkflowViewState.IdRef="Assign_17">
+                                    <Assign.To>
+                                      <OutArgument x:TypeArguments="x:String">[userAddress]</OutArgument>
+                                    </Assign.To>
+                                    <Assign.Value>
+                                      <InArgument x:TypeArguments="x:String">[userAddress + item + " "]</InArgument>
+                                    </Assign.Value>
+                                  </Assign>
+                                </If.Then>
+                              </If>
+                              <If Condition="[item.Equals(&quot;Number&quot;)]" sap2010:WorkflowViewState.IdRef="If_15">
+                                <If.Then>
+                                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_35">
+                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_16">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:Boolean">[addressFound]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                    <Assign sap2010:WorkflowViewState.IdRef="Assign_24">
+                                      <Assign.To>
+                                        <OutArgument x:TypeArguments="x:String">[userAddress]</OutArgument>
+                                      </Assign.To>
+                                      <Assign.Value>
+                                        <InArgument x:TypeArguments="x:String">[Environment.NewLine]</InArgument>
+                                      </Assign.Value>
+                                    </Assign>
+                                  </Sequence>
+                                </If.Then>
+                              </If>
+                            </Sequence>
+                          </ActivityAction>
+                        </ui:ForEach.Body>
+                      </ui:ForEach>
+                      <Assign sap2010:WorkflowViewState.IdRef="Assign_25">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:String">[docInfo]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:String">[userName + userAddress]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <ui:WriteTextFile DisplayName="Write text file" FileName="attachments\CustomerAddress.doc" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[docInfo]" />
+                    </Sequence>
+                    <FlowStep.Next>
+                      <FlowStep x:Name="__ReferenceID7" sap2010:WorkflowViewState.IdRef="FlowStep_11">
+                        <Sequence DisplayName="Assign Section one values" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="x:Boolean" Default="False" Name="serviceFound" />
+                            <Variable x:TypeArguments="x:String" Name="variable1" />
+                            <Variable x:TypeArguments="x:Boolean" Default="False" Name="accountNumberFound" />
+                          </Sequence.Variables>
+                          <ui:ForEach x:TypeArguments="x:String" DisplayName="For each" sap2010:WorkflowViewState.IdRef="ForEach`1_25" Values="[sectionOneList]">
+                            <ui:ForEach.Body>
+                              <ActivityAction x:TypeArguments="x:String">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+                                </ActivityAction.Argument>
+                                <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                                  <If Condition="[item.Contains(&quot;1-800&quot;)]" sap2010:WorkflowViewState.IdRef="If_21">
+                                    <If.Then>
+                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_28">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[contactNumber]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">[item]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </If.Then>
+                                  </If>
+                                  <If Condition="[item.Contains(&quot;9999&quot;)]" sap2010:WorkflowViewState.IdRef="If_24">
+                                    <If.Then>
+                                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_41">
+                                        <Assign sap2010:WorkflowViewState.IdRef="Assign_31">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Boolean">[serviceFound]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                        <Assign sap2010:WorkflowViewState.IdRef="Assign_32">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="x:Boolean">[accountNumberFound]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                      </Sequence>
+                                    </If.Then>
+                                  </If>
+                                  <If Condition="[accountNumberFound]" sap2010:WorkflowViewState.IdRef="If_26">
+                                    <If.Then>
+                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_33">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[userNumber]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">[userNumber + item + " "]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </If.Then>
+                                  </If>
+                                  <If Condition="[serviceFound]" sap2010:WorkflowViewState.IdRef="If_23">
+                                    <If.Then>
+                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_30">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:String">[serviceInfo]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:String">[serviceInfo + item + " "]</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </If.Then>
+                                  </If>
+                                  <If Condition="[item.Contains(&quot;Service&quot;)]" sap2010:WorkflowViewState.IdRef="If_22">
+                                    <If.Then>
+                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_29">
+                                        <Assign.To>
+                                          <OutArgument x:TypeArguments="x:Boolean">[serviceFound]</OutArgument>
+                                        </Assign.To>
+                                        <Assign.Value>
+                                          <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                        </Assign.Value>
+                                      </Assign>
+                                    </If.Then>
+                                  </If>
+                                </Sequence>
+                              </ActivityAction>
+                            </ui:ForEach.Body>
+                          </ui:ForEach>
+                        </Sequence>
+                        <FlowStep.Next>
+                          <FlowStep x:Name="__ReferenceID10" sap2010:WorkflowViewState.IdRef="FlowStep_16">
+                            <Flowchart DisplayName="Populate Excel" sap2010:WorkflowViewState.IdRef="Flowchart_3">
+                              <Flowchart.Variables>
+                                <Variable x:TypeArguments="sd1:DataTable" Name="ExcelTable" />
+                              </Flowchart.Variables>
+                              <Flowchart.StartNode>
+                                <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_20">
+                                  <Sequence DisplayName="Section1" sap2010:WorkflowViewState.IdRef="Sequence_53">
+                                    <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel application scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_4" WorkbookPath="attachments\Statement.xlsx">
+                                      <ui:ExcelApplicationScope.Body>
+                                        <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                                          <ActivityAction.Argument>
+                                            <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                                          </ActivityAction.Argument>
+                                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_54">
+                                            <ui:ExcelWriteCell Cell="A1" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_3" SheetName="Sheet1" Text="www.citicards.com" />
+                                            <ui:ExcelWriteCell Cell="A2" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_6" SheetName="Sheet1" Text="Account Member" />
+                                            <ui:ExcelWriteCell Cell="A3" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_7" SheetName="Sheet1" Text="[userName]" />
+                                            <ui:ExcelWriteCell Cell="B1" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_8" SheetName="Sheet1" Text="[userAddress]" />
+                                            <ui:ExcelWriteCell Cell="A4" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_9" SheetName="Sheet1" Text="Account Number" />
+                                            <ui:ExcelWriteCell Cell="A5" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_10" SheetName="Sheet1" Text="[userNumber]" />
+                                            <ui:ExcelWriteCell Cell="C1" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_11" SheetName="Sheet1" Text="How To Reach Us" />
+                                            <ui:ExcelWriteCell Cell="C2" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_12" SheetName="Sheet1" Text="[contactNumber]" />
+                                            <ui:ExcelWriteCell Cell="C3" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_13" SheetName="Sheet1" Text="Customer Service" />
+                                            <ui:ExcelWriteCell Cell="C4" DisplayName="Write Cell" sap2010:WorkflowViewState.IdRef="ExcelWriteCell_14" SheetName="Sheet1" Text="[serviceInfo]" />
+                                          </Sequence>
+                                        </ActivityAction>
+                                      </ui:ExcelApplicationScope.Body>
+                                    </ui:ExcelApplicationScope>
+                                  </Sequence>
+                                  <FlowStep.Next>
+                                    <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_21">
+                                      <Sequence DisplayName="Section2" sap2010:WorkflowViewState.IdRef="Sequence_57">
+                                        <Sequence.Variables>
+                                          <Variable x:TypeArguments="sd1:DataTable" Name="sec2Data" />
+                                          <Variable x:TypeArguments="scg:List(x:String)" Name="SpaceList" />
+                                          <Variable x:TypeArguments="scg:List(x:String)" Name="RowList" />
+                                        </Sequence.Variables>
+                                        <ui:BuildDataTable DataTable="[sec2Data]" DisplayName="Build data table" sap2010:WorkflowViewState.IdRef="BuildDataTable_7" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Column1&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+                                        <Assign sap2010:WorkflowViewState.IdRef="Assign_43">
+                                          <Assign.To>
+                                            <OutArgument x:TypeArguments="scg:List(x:String)">[SpaceList]</OutArgument>
+                                          </Assign.To>
+                                          <Assign.Value>
+                                            <InArgument x:TypeArguments="scg:List(x:String)">[new List(of String)]</InArgument>
+                                          </Assign.Value>
+                                        </Assign>
+                                        <AddToCollection x:TypeArguments="x:String" Collection="[SpaceList]" DisplayName="Add to collection" sap2010:WorkflowViewState.IdRef="AddToCollection`1_23" Item="[Environment.newline]" />
+                                        <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[SpaceList.ToArray]" DataTable="[sec2Data]" DisplayName="Add data row" sap2010:WorkflowViewState.IdRef="AddDataRow_8" />
+                                        <ui:ForEach x:TypeArguments="x:String" DisplayName="For each" sap2010:WorkflowViewState.IdRef="ForEach`1_33" Values="[sectionTwoList]">
+                                          <ui:ForEach.Body>
+                                            <ActivityAction x:TypeArguments="x:String">
+                                              <ActivityAction.Argument>
+                                                <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+                                              </ActivityAction.Argument>
+                                              <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_58">
+                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_47">
+                                                  <Assign.To>
+                                                    <OutArgument x:TypeArguments="scg:List(x:String)">[RowList]</OutArgument>
+                                                  </Assign.To>
+                                                  <Assign.Value>
+                                                    <InArgument x:TypeArguments="scg:List(x:String)">[new List(of String)]</InArgument>
+                                                  </Assign.Value>
+                                                </Assign>
+                                                <AddToCollection x:TypeArguments="x:String" Collection="[RowList]" DisplayName="Add to collection" sap2010:WorkflowViewState.IdRef="AddToCollection`1_21" Item="[item]" />
+                                                <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[RowList.ToArray]" DataTable="[sec2Data]" DisplayName="Add data row" sap2010:WorkflowViewState.IdRef="AddDataRow_6" />
+                                              </Sequence>
+                                            </ActivityAction>
+                                          </ui:ForEach.Body>
+                                        </ui:ForEach>
+                                        <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel application scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_5" WorkbookPath="attachments\Statement.xlsx">
+                                          <ui:ExcelApplicationScope.Body>
+                                            <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                                              <ActivityAction.Argument>
+                                                <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                                              </ActivityAction.Argument>
+                                              <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_59">
+                                                <ui:ExcelAppendRange DataTable="[sec2Data]" DisplayName="Append Range" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_3" SheetName="Sheet1" />
+                                              </Sequence>
+                                            </ActivityAction>
+                                          </ui:ExcelApplicationScope.Body>
+                                        </ui:ExcelApplicationScope>
+                                      </Sequence>
+                                      <FlowStep.Next>
+                                        <FlowStep x:Name="__ReferenceID4" sap2010:WorkflowViewState.IdRef="FlowStep_22">
+                                          <Sequence DisplayName="Section3" sap2010:WorkflowViewState.IdRef="Sequence_60">
+                                            <Sequence.Variables>
+                                              <Variable x:TypeArguments="sd1:DataTable" Name="Sec3Data" />
+                                              <Variable x:TypeArguments="scg:List(x:String)" Name="SPDAList" />
+                                              <Variable x:TypeArguments="scg:List(x:String)" Name="RowList" />
+                                              <Variable x:TypeArguments="x:Boolean" Default="False" Name="FillColumns" />
+                                              <Variable x:TypeArguments="scg:List(x:String)" Name="SpaceList" />
+                                              <Variable x:TypeArguments="x:String" Name="Sale" />
+                                              <Variable x:TypeArguments="x:String" Name="Post" />
+                                              <Variable x:TypeArguments="x:String" Name="Description" />
+                                              <Variable x:TypeArguments="x:String" Name="Amount" />
+                                            </Sequence.Variables>
+                                            <ui:BuildDataTable DataTable="[Sec3Data]" DisplayName="Build data table" sap2010:WorkflowViewState.IdRef="BuildDataTable_8" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;A&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;B&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;C&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;D&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
+                                            <Assign sap2010:WorkflowViewState.IdRef="Assign_52">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="scg:List(x:String)">[SpaceList]</OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="scg:List(x:String)">[new List(of String)]</InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="x:String" Collection="[SpaceList]" DisplayName="Add to collection" sap2010:WorkflowViewState.IdRef="AddToCollection`1_30" Item="[Environment.newline]" />
+                                            <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[SpaceList.ToArray]" DataTable="[Sec3Data]" DisplayName="Add data row" sap2010:WorkflowViewState.IdRef="AddDataRow_11" />
+                                            <Assign sap2010:WorkflowViewState.IdRef="Assign_48">
+                                              <Assign.To>
+                                                <OutArgument x:TypeArguments="scg:List(x:String)">[SPDAList]</OutArgument>
+                                              </Assign.To>
+                                              <Assign.Value>
+                                                <InArgument x:TypeArguments="scg:List(x:String)">[new List(Of String)]</InArgument>
+                                              </Assign.Value>
+                                            </Assign>
+                                            <AddToCollection x:TypeArguments="x:String" Collection="[SPDAList]" DisplayName="Add to collection" sap2010:WorkflowViewState.IdRef="AddToCollection`1_24" Item="Sale" />
+                                            <AddToCollection x:TypeArguments="x:String" Collection="[SPDAList]" DisplayName="Add to collection" sap2010:WorkflowViewState.IdRef="AddToCollection`1_25" Item="Post" />
+                                            <AddToCollection x:TypeArguments="x:String" Collection="[SPDAList]" DisplayName="Add to collection" sap2010:WorkflowViewState.IdRef="AddToCollection`1_26" Item="Description" />
+                                            <AddToCollection x:TypeArguments="x:String" Collection="[SPDAList]" DisplayName="Add to collection" sap2010:WorkflowViewState.IdRef="AddToCollection`1_27" Item="Amount" />
+                                            <ui:ForEach x:TypeArguments="x:String" DisplayName="For each" sap2010:WorkflowViewState.IdRef="ForEach`1_35" Values="[sectionThreeList]">
+                                              <ui:ForEach.Body>
+                                                <ActivityAction x:TypeArguments="x:String">
+                                                  <ActivityAction.Argument>
+                                                    <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+                                                  </ActivityAction.Argument>
+                                                  <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_61">
+                                                    <If Condition="[item.Contains(&quot;Payments&quot;) OR item.Contains(&quot;Standard&quot;) OR item.Contains(&quot;Purchases&quot;) OR item.Contains(&quot;Fees&quot;)]" sap2010:WorkflowViewState.IdRef="If_84">
+                                                      <If.Then>
+                                                        <Assign sap2010:WorkflowViewState.IdRef="Assign_105">
+                                                          <Assign.To>
+                                                            <OutArgument x:TypeArguments="x:Boolean">[FillColumns]</OutArgument>
+                                                          </Assign.To>
+                                                          <Assign.Value>
+                                                            <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                                          </Assign.Value>
+                                                        </Assign>
+                                                      </If.Then>
+                                                    </If>
+                                                    <If Condition="[NOT FillColumns and NOT item.Contains(&quot;Sale&quot;)]" sap2010:WorkflowViewState.IdRef="If_56">
+                                                      <If.Then>
+                                                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_74">
+                                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_65">
+                                                            <Assign.To>
+                                                              <OutArgument x:TypeArguments="scg:List(x:String)">[RowList]</OutArgument>
+                                                            </Assign.To>
+                                                            <Assign.Value>
+                                                              <InArgument x:TypeArguments="scg:List(x:String)">[new List(Of String)]</InArgument>
+                                                            </Assign.Value>
+                                                          </Assign>
+                                                          <AddToCollection x:TypeArguments="x:String" Collection="[RowList]" DisplayName="Add to collection" sap2010:WorkflowViewState.IdRef="AddToCollection`1_37" Item="[Item]" />
+                                                          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[RowList.ToArray]" DataTable="[Sec3Data]" DisplayName="Add data row" sap2010:WorkflowViewState.IdRef="AddDataRow_13" />
+                                                        </Sequence>
+                                                      </If.Then>
+                                                    </If>
+                                                    <If Condition="[FillColumns]" sap2010:WorkflowViewState.IdRef="If_44">
+                                                      <If.Then>
+                                                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_92">
+                                                          <Sequence.Variables>
+                                                            <Variable x:TypeArguments="x:Boolean" Default="False" Name="SaleSet" />
+                                                            <Variable x:TypeArguments="x:Boolean" Default="False" Name="DescriptionDone" />
+                                                            <Variable x:TypeArguments="x:String" Name="Emptyspace">
+                                                              <Variable.Default>
+                                                                <Literal x:TypeArguments="x:String" Value="" />
+                                                              </Variable.Default>
+                                                            </Variable>
+                                                          </Sequence.Variables>
+                                                          <ui:ForEach x:TypeArguments="x:String" DisplayName="For each" sap2010:WorkflowViewState.IdRef="ForEach`1_39" Values="[item.Split({&quot; &quot;}, StringSplitOptions.None)]">
+                                                            <ui:ForEach.Body>
+                                                              <ActivityAction x:TypeArguments="x:String">
+                                                                <ActivityAction.Argument>
+                                                                  <DelegateInArgument x:TypeArguments="x:String" Name="itemz" />
+                                                                </ActivityAction.Argument>
+                                                                <Sequence sap2010:WorkflowViewState.IdRef="Sequence_89">
+                                                                  <If Condition="[DescriptionDone]" sap2010:WorkflowViewState.IdRef="If_76">
+                                                                    <If.Then>
+                                                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_91">
+                                                                        <Assign.To>
+                                                                          <OutArgument x:TypeArguments="x:String">[Amount]</OutArgument>
+                                                                        </Assign.To>
+                                                                        <Assign.Value>
+                                                                          <InArgument x:TypeArguments="x:String">[itemz]</InArgument>
+                                                                        </Assign.Value>
+                                                                      </Assign>
+                                                                    </If.Then>
+                                                                  </If>
+                                                                  <If Condition="[NOT itemz.Contains(&quot;/&quot;) and NOT DescriptionDone]" sap2010:WorkflowViewState.IdRef="If_77">
+                                                                    <If.Then>
+                                                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_92">
+                                                                        <Assign.To>
+                                                                          <OutArgument x:TypeArguments="x:String">[Description]</OutArgument>
+                                                                        </Assign.To>
+                                                                        <Assign.Value>
+                                                                          <InArgument x:TypeArguments="x:String">[Description + itemz + " "]</InArgument>
+                                                                        </Assign.Value>
+                                                                      </Assign>
+                                                                    </If.Then>
+                                                                  </If>
+                                                                  <If Condition="[itemz.Contains(&quot;YOU&quot;) OR itemz.Contains(&quot;FL&quot;) OR itemz.Contains(&quot;PERIOD&quot;) OR itemz.Contains(&quot;CA&quot;)]" sap2010:WorkflowViewState.IdRef="If_78">
+                                                                    <If.Then>
+                                                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_93">
+                                                                        <Assign.To>
+                                                                          <OutArgument x:TypeArguments="x:Boolean">[DescriptionDone]</OutArgument>
+                                                                        </Assign.To>
+                                                                        <Assign.Value>
+                                                                          <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                                                        </Assign.Value>
+                                                                      </Assign>
+                                                                    </If.Then>
+                                                                  </If>
+                                                                  <If Condition="[itemz.Contains(&quot;/&quot;) AND NOT String.IsNullOrEmpty(Sale)]" sap2010:WorkflowViewState.IdRef="If_80">
+                                                                    <If.Then>
+                                                                      <Assign sap2010:WorkflowViewState.IdRef="Assign_95">
+                                                                        <Assign.To>
+                                                                          <OutArgument x:TypeArguments="x:String">[Post]</OutArgument>
+                                                                        </Assign.To>
+                                                                        <Assign.Value>
+                                                                          <InArgument x:TypeArguments="x:String">[itemz]</InArgument>
+                                                                        </Assign.Value>
+                                                                      </Assign>
+                                                                    </If.Then>
+                                                                  </If>
+                                                                  <If Condition="[itemz.Contains(&quot;/&quot;) AND String.IsNullOrEmpty(Sale)]" sap2010:WorkflowViewState.IdRef="If_79">
+                                                                    <If.Then>
+                                                                      <Sequence sap2010:WorkflowViewState.IdRef="Sequence_88">
+                                                                        <Assign sap2010:WorkflowViewState.IdRef="Assign_94">
+                                                                          <Assign.To>
+                                                                            <OutArgument x:TypeArguments="x:String">[Sale]</OutArgument>
+                                                                          </Assign.To>
+                                                                          <Assign.Value>
+                                                                            <InArgument x:TypeArguments="x:String">[itemz]</InArgument>
+                                                                          </Assign.Value>
+                                                                        </Assign>
+                                                                      </Sequence>
+                                                                    </If.Then>
+                                                                  </If>
+                                                                </Sequence>
+                                                              </ActivityAction>
+                                                            </ui:ForEach.Body>
+                                                          </ui:ForEach>
+                                                          <If Condition="[String.IsNullOrEmpty(Post)]" sap2010:WorkflowViewState.IdRef="If_81">
+                                                            <If.Then>
+                                                              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_90">
+                                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_96">
+                                                                  <Assign.To>
+                                                                    <OutArgument x:TypeArguments="x:String">[Post]</OutArgument>
+                                                                  </Assign.To>
+                                                                  <Assign.Value>
+                                                                    <InArgument x:TypeArguments="x:String">[Sale]</InArgument>
+                                                                  </Assign.Value>
+                                                                </Assign>
+                                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_97">
+                                                                  <Assign.To>
+                                                                    <OutArgument x:TypeArguments="x:String">[Sale]</OutArgument>
+                                                                  </Assign.To>
+                                                                  <Assign.Value>
+                                                                    <InArgument x:TypeArguments="x:String">[Emptyspace]</InArgument>
+                                                                  </Assign.Value>
+                                                                </Assign>
+                                                              </Sequence>
+                                                            </If.Then>
+                                                          </If>
+                                                          <If Condition="[String.IsNullOrEmpty(Post) AND String.IsNullOrEmpty(Sale)]" sap2010:WorkflowViewState.IdRef="If_82">
+                                                            <If.Then>
+                                                              <Sequence sap2010:WorkflowViewState.IdRef="Sequence_91">
+                                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_98">
+                                                                  <Assign.To>
+                                                                    <OutArgument x:TypeArguments="x:String">[Post]</OutArgument>
+                                                                  </Assign.To>
+                                                                  <Assign.Value>
+                                                                    <InArgument x:TypeArguments="x:String">[Emptyspace]</InArgument>
+                                                                  </Assign.Value>
+                                                                </Assign>
+                                                                <Assign sap2010:WorkflowViewState.IdRef="Assign_99">
+                                                                  <Assign.To>
+                                                                    <OutArgument x:TypeArguments="x:String">[Sale]</OutArgument>
+                                                                  </Assign.To>
+                                                                  <Assign.Value>
+                                                                    <InArgument x:TypeArguments="x:String">[Emptyspace]</InArgument>
+                                                                  </Assign.Value>
+                                                                </Assign>
+                                                              </Sequence>
+                                                            </If.Then>
+                                                          </If>
+                                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_104">
+                                                            <Assign.To>
+                                                              <OutArgument x:TypeArguments="x:Boolean">[DescriptionDone]</OutArgument>
+                                                            </Assign.To>
+                                                            <Assign.Value>
+                                                              <InArgument x:TypeArguments="x:Boolean">False</InArgument>
+                                                            </Assign.Value>
+                                                          </Assign>
+                                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_100">
+                                                            <Assign.To>
+                                                              <OutArgument x:TypeArguments="scg:List(x:String)">[RowList]</OutArgument>
+                                                            </Assign.To>
+                                                            <Assign.Value>
+                                                              <InArgument x:TypeArguments="scg:List(x:String)">[new List(of String)]</InArgument>
+                                                            </Assign.Value>
+                                                          </Assign>
+                                                          <AddToCollection x:TypeArguments="x:String" Collection="[RowList]" DisplayName="Add to collection" sap2010:WorkflowViewState.IdRef="AddToCollection`1_43" Item="[Sale]" />
+                                                          <AddToCollection x:TypeArguments="x:String" Collection="[RowList]" DisplayName="Add to collection" sap2010:WorkflowViewState.IdRef="AddToCollection`1_44" Item="[Post]" />
+                                                          <AddToCollection x:TypeArguments="x:String" Collection="[RowList]" DisplayName="Add to collection" sap2010:WorkflowViewState.IdRef="AddToCollection`1_45" Item="[Description]" />
+                                                          <AddToCollection x:TypeArguments="x:String" Collection="[RowList]" DisplayName="Add to collection" sap2010:WorkflowViewState.IdRef="AddToCollection`1_46" Item="[Amount]" />
+                                                          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[RowList.ToArray]" DataTable="[Sec3Data]" DisplayName="Add data row" sap2010:WorkflowViewState.IdRef="AddDataRow_16" />
+                                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_106">
+                                                            <Assign.To>
+                                                              <OutArgument x:TypeArguments="x:String">[Sale]</OutArgument>
+                                                            </Assign.To>
+                                                            <Assign.Value>
+                                                              <InArgument x:TypeArguments="x:String">[Emptyspace]</InArgument>
+                                                            </Assign.Value>
+                                                          </Assign>
+                                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_107">
+                                                            <Assign.To>
+                                                              <OutArgument x:TypeArguments="x:String">[Post]</OutArgument>
+                                                            </Assign.To>
+                                                            <Assign.Value>
+                                                              <InArgument x:TypeArguments="x:String">[Emptyspace]</InArgument>
+                                                            </Assign.Value>
+                                                          </Assign>
+                                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_108">
+                                                            <Assign.To>
+                                                              <OutArgument x:TypeArguments="x:String">[Description]</OutArgument>
+                                                            </Assign.To>
+                                                            <Assign.Value>
+                                                              <InArgument x:TypeArguments="x:String">[Emptyspace]</InArgument>
+                                                            </Assign.Value>
+                                                          </Assign>
+                                                          <If Condition="[NOT Amount.Contains(&quot;-&quot;)]" sap2010:WorkflowViewState.IdRef="If_83">
+                                                            <If.Then>
+                                                              <AddToCollection x:TypeArguments="x:Double" Collection="[AmountList]" DisplayName="Add to collection" sap2010:WorkflowViewState.IdRef="AddToCollection`1_47" Item="[Convert.ToDouble(Amount)]" />
+                                                            </If.Then>
+                                                          </If>
+                                                        </Sequence>
+                                                      </If.Then>
+                                                    </If>
+                                                    <If Condition="[item.Contains(&quot;Sale&quot;)]" sap2010:WorkflowViewState.IdRef="If_43">
+                                                      <If.Then>
+                                                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_77">
+                                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_66">
+                                                            <Assign.To>
+                                                              <OutArgument x:TypeArguments="x:Boolean">[FillColumns]</OutArgument>
+                                                            </Assign.To>
+                                                            <Assign.Value>
+                                                              <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                                                            </Assign.Value>
+                                                          </Assign>
+                                                          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[SPDAList.ToArray]" DataTable="[Sec3Data]" DisplayName="Add data row" sap2010:WorkflowViewState.IdRef="AddDataRow_14" />
+                                                        </Sequence>
+                                                      </If.Then>
+                                                    </If>
+                                                  </Sequence>
+                                                </ActivityAction>
+                                              </ui:ForEach.Body>
+                                            </ui:ForEach>
+                                            <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel application scope" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_6" WorkbookPath="attachments\Statement.xlsx">
+                                              <ui:ExcelApplicationScope.Body>
+                                                <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+                                                  <ActivityAction.Argument>
+                                                    <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+                                                  </ActivityAction.Argument>
+                                                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_65">
+                                                    <ui:ExcelAppendRange DataTable="[Sec3Data]" DisplayName="Append Range" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_4" SheetName="Sheet1" />
+                                                  </Sequence>
+                                                </ActivityAction>
+                                              </ui:ExcelApplicationScope.Body>
+                                            </ui:ExcelApplicationScope>
+                                          </Sequence>
+                                        </FlowStep>
+                                      </FlowStep.Next>
+                                    </FlowStep>
+                                  </FlowStep.Next>
+                                </FlowStep>
+                              </Flowchart.StartNode>
+                              <x:Reference>__ReferenceID2</x:Reference>
+                              <x:Reference>__ReferenceID3</x:Reference>
+                              <x:Reference>__ReferenceID4</x:Reference>
+                            </Flowchart>
+                            <FlowStep.Next>
+                              <FlowStep x:Name="__ReferenceID11" sap2010:WorkflowViewState.IdRef="FlowStep_23">
+                                <Sequence DisplayName="Total Purchase" sap2010:WorkflowViewState.IdRef="Sequence_94">
+                                  <Sequence.Variables>
+                                    <Variable x:TypeArguments="x:Double" Default="0" Name="TotalPurchase" />
+                                  </Sequence.Variables>
+                                  <ui:ForEach x:TypeArguments="x:Double" DisplayName="For each" sap2010:WorkflowViewState.IdRef="ForEach`1_43" Values="[AmountList]">
+                                    <ui:ForEach.Body>
+                                      <ActivityAction x:TypeArguments="x:Double">
+                                        <ActivityAction.Argument>
+                                          <DelegateInArgument x:TypeArguments="x:Double" Name="item" />
+                                        </ActivityAction.Argument>
+                                        <Sequence DisplayName="Body" sap2010:WorkflowViewState.IdRef="Sequence_95">
+                                          <Assign sap2010:WorkflowViewState.IdRef="Assign_109">
+                                            <Assign.To>
+                                              <OutArgument x:TypeArguments="x:Double">[TotalPurchase]</OutArgument>
+                                            </Assign.To>
+                                            <Assign.Value>
+                                              <InArgument x:TypeArguments="x:Double">[TotalPurchase + item]</InArgument>
+                                            </Assign.Value>
+                                          </Assign>
+                                        </Sequence>
+                                      </ActivityAction>
+                                    </ui:ForEach.Body>
+                                  </ui:ForEach>
+                                  <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message box" sap2010:WorkflowViewState.IdRef="MessageBox_3" Text="[TotalPurchase.ToString]" TopMost="True" />
+                                </Sequence>
+                              </FlowStep>
+                            </FlowStep.Next>
+                          </FlowStep>
+                        </FlowStep.Next>
+                      </FlowStep>
+                    </FlowStep.Next>
+                  </FlowStep>
+                </FlowStep.Next>
+              </FlowStep>
+            </FlowStep.Next>
+          </FlowStep>
+        </FlowStep.Next>
+      </FlowStep>
+    </Flowchart.StartNode>
+    <x:Reference>__ReferenceID5</x:Reference>
+    <x:Reference>__ReferenceID6</x:Reference>
+    <x:Reference>__ReferenceID7</x:Reference>
+    <x:Reference>__ReferenceID8</x:Reference>
+    <x:Reference>__ReferenceID9</x:Reference>
+    <x:Reference>__ReferenceID10</x:Reference>
+    <x:Reference>__ReferenceID11</x:Reference>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+  </Flowchart>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="InputDialog_3" sap:VirtualizedContainerService.HintSize="502,92" />
+      <sap2010:ViewStateData Id="InputDialog_4" sap:VirtualizedContainerService.HintSize="502,92" />
+      <sap2010:ViewStateData Id="GetIMAPMailMessages_3" sap:VirtualizedContainerService.HintSize="502,22" />
+      <sap2010:ViewStateData Id="SaveMailAttachments_3" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="Break_1" sap:VirtualizedContainerService.HintSize="314,22" />
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="336,273">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,421" />
+      <sap2010:ViewStateData Id="Sequence_36" sap:VirtualizedContainerService.HintSize="486,545">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_5" sap:VirtualizedContainerService.HintSize="502,679" />
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_35" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_36" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_34" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_103" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_42" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="MicrosoftOCR_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="ReadPDFWithOCR_4" sap:VirtualizedContainerService.HintSize="502,132" />
+      <sap2010:ViewStateData Id="Break_9" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="AddToCollection`1_16" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_33" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="ForEach`1_27" sap:VirtualizedContainerService.HintSize="502,342" />
+      <sap2010:ViewStateData Id="Break_12" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_42" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Assign_42" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_40" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="AddToCollection`1_19" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_41" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Sequence_51" sap:VirtualizedContainerService.HintSize="486,828">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_30" sap:VirtualizedContainerService.HintSize="502,962" />
+      <sap2010:ViewStateData Id="Sequence_47" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GoogleOCR_2" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="ReadPDFWithOCR_3" sap:VirtualizedContainerService.HintSize="502,132" />
+      <sap2010:ViewStateData Id="Assign_37" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_27" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="AddToCollection`1_13" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_28" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Sequence_43" sap:VirtualizedContainerService.HintSize="486,580">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_26" sap:VirtualizedContainerService.HintSize="502,714" />
+      <sap2010:ViewStateData Id="Sequence_44" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_14">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,234.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,415.5 300,444.5</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_15">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,154.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,205.5 300,234.5</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Flowchart_2" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+            <av:Size x:Key="ShapeSize">60,75</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,154.5</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Break_6" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_14" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Assign_15" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_29" sap:VirtualizedContainerService.HintSize="264,184">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_13" sap:VirtualizedContainerService.HintSize="464,332" />
+      <sap2010:ViewStateData Id="Assign_13" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_28" sap:VirtualizedContainerService.HintSize="264,184">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_12" sap:VirtualizedContainerService.HintSize="464,332" />
+      <sap2010:ViewStateData Id="Assign_12" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_30" sap:VirtualizedContainerService.HintSize="264,184">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_11" sap:VirtualizedContainerService.HintSize="464,332" />
+      <sap2010:ViewStateData Id="Assign_17" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_16" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Assign_16" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_24" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_35" sap:VirtualizedContainerService.HintSize="264,284">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_15" sap:VirtualizedContainerService.HintSize="464,432" />
+      <sap2010:ViewStateData Id="Sequence_27" sap:VirtualizedContainerService.HintSize="486,2168">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_23" sap:VirtualizedContainerService.HintSize="502,2302" />
+      <sap2010:ViewStateData Id="Assign_25" sap:VirtualizedContainerService.HintSize="502,60" />
+      <sap2010:ViewStateData Id="WriteTextFile_1" sap:VirtualizedContainerService.HintSize="502,87" />
+      <sap2010:ViewStateData Id="Sequence_26" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_28" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_21" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Assign_31" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_32" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_41" sap:VirtualizedContainerService.HintSize="264,284">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_24" sap:VirtualizedContainerService.HintSize="464,432" />
+      <sap2010:ViewStateData Id="Assign_33" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_26" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Assign_30" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_23" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Assign_29" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_22" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Sequence_40" sap:VirtualizedContainerService.HintSize="486,1548">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_25" sap:VirtualizedContainerService.HintSize="502,1682" />
+      <sap2010:ViewStateData Id="Sequence_39" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExcelWriteCell_3" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="ExcelWriteCell_6" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="ExcelWriteCell_7" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="ExcelWriteCell_8" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="ExcelWriteCell_9" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="ExcelWriteCell_10" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="ExcelWriteCell_11" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="ExcelWriteCell_12" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="ExcelWriteCell_13" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="ExcelWriteCell_14" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="Sequence_54" sap:VirtualizedContainerService.HintSize="336,1354">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExcelApplicationScope_4" sap:VirtualizedContainerService.HintSize="414,1463" />
+      <sap2010:ViewStateData Id="Sequence_53" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="BuildDataTable_7" sap:VirtualizedContainerService.HintSize="414,59" />
+      <sap2010:ViewStateData Id="Assign_43" sap:VirtualizedContainerService.HintSize="414,60" />
+      <sap2010:ViewStateData Id="AddToCollection`1_23" sap:VirtualizedContainerService.HintSize="414,22" />
+      <sap2010:ViewStateData Id="AddDataRow_8" sap:VirtualizedContainerService.HintSize="414,22" />
+      <sap2010:ViewStateData Id="Assign_47" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="AddToCollection`1_21" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="AddDataRow_6" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Sequence_58" sap:VirtualizedContainerService.HintSize="264,308">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_33" sap:VirtualizedContainerService.HintSize="414,442" />
+      <sap2010:ViewStateData Id="ExcelAppendRange_3" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="Sequence_59" sap:VirtualizedContainerService.HintSize="336,211">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExcelApplicationScope_5" sap:VirtualizedContainerService.HintSize="414,320" />
+      <sap2010:ViewStateData Id="Sequence_57" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="BuildDataTable_8" sap:VirtualizedContainerService.HintSize="502,59" />
+      <sap2010:ViewStateData Id="Assign_52" sap:VirtualizedContainerService.HintSize="502,60" />
+      <sap2010:ViewStateData Id="AddToCollection`1_30" sap:VirtualizedContainerService.HintSize="502,22" />
+      <sap2010:ViewStateData Id="AddDataRow_11" sap:VirtualizedContainerService.HintSize="502,22" />
+      <sap2010:ViewStateData Id="Assign_48" sap:VirtualizedContainerService.HintSize="502,60" />
+      <sap2010:ViewStateData Id="AddToCollection`1_24" sap:VirtualizedContainerService.HintSize="502,22" />
+      <sap2010:ViewStateData Id="AddToCollection`1_25" sap:VirtualizedContainerService.HintSize="502,22" />
+      <sap2010:ViewStateData Id="AddToCollection`1_26" sap:VirtualizedContainerService.HintSize="502,22" />
+      <sap2010:ViewStateData Id="AddToCollection`1_27" sap:VirtualizedContainerService.HintSize="502,22" />
+      <sap2010:ViewStateData Id="Assign_105" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_84" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Assign_65" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="AddToCollection`1_37" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="AddDataRow_13" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Sequence_74" sap:VirtualizedContainerService.HintSize="264,308">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_56" sap:VirtualizedContainerService.HintSize="464,456" />
+      <sap2010:ViewStateData Id="Assign_91" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_76" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Assign_92" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_77" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Assign_93" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_78" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Assign_95" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_80" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Assign_94" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_88" sap:VirtualizedContainerService.HintSize="264,184">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_79" sap:VirtualizedContainerService.HintSize="464,332" />
+      <sap2010:ViewStateData Id="Sequence_89" sap:VirtualizedContainerService.HintSize="486,1448">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_39" sap:VirtualizedContainerService.HintSize="502,1582" />
+      <sap2010:ViewStateData Id="Assign_96" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_97" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_90" sap:VirtualizedContainerService.HintSize="264,284">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_81" sap:VirtualizedContainerService.HintSize="502,432" />
+      <sap2010:ViewStateData Id="Assign_98" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_99" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_91" sap:VirtualizedContainerService.HintSize="264,284">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_82" sap:VirtualizedContainerService.HintSize="502,432" />
+      <sap2010:ViewStateData Id="Assign_104" sap:VirtualizedContainerService.HintSize="502,60" />
+      <sap2010:ViewStateData Id="Assign_100" sap:VirtualizedContainerService.HintSize="502,60" />
+      <sap2010:ViewStateData Id="AddToCollection`1_43" sap:VirtualizedContainerService.HintSize="502,22" />
+      <sap2010:ViewStateData Id="AddToCollection`1_44" sap:VirtualizedContainerService.HintSize="502,22" />
+      <sap2010:ViewStateData Id="AddToCollection`1_45" sap:VirtualizedContainerService.HintSize="502,22" />
+      <sap2010:ViewStateData Id="AddToCollection`1_46" sap:VirtualizedContainerService.HintSize="502,22" />
+      <sap2010:ViewStateData Id="AddDataRow_16" sap:VirtualizedContainerService.HintSize="502,22" />
+      <sap2010:ViewStateData Id="Assign_106" sap:VirtualizedContainerService.HintSize="502,60" />
+      <sap2010:ViewStateData Id="Assign_107" sap:VirtualizedContainerService.HintSize="502,60" />
+      <sap2010:ViewStateData Id="Assign_108" sap:VirtualizedContainerService.HintSize="502,60" />
+      <sap2010:ViewStateData Id="AddToCollection`1_47" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="If_83" sap:VirtualizedContainerService.HintSize="502,208" />
+      <sap2010:ViewStateData Id="Sequence_92" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_44" sap:VirtualizedContainerService.HintSize="464,208" />
+      <sap2010:ViewStateData Id="Assign_66" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="AddDataRow_14" sap:VirtualizedContainerService.HintSize="242,22" />
+      <sap2010:ViewStateData Id="Sequence_77" sap:VirtualizedContainerService.HintSize="264,246">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_43" sap:VirtualizedContainerService.HintSize="464,394" />
+      <sap2010:ViewStateData Id="Sequence_61" sap:VirtualizedContainerService.HintSize="486,1510">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_35" sap:VirtualizedContainerService.HintSize="502,1644" />
+      <sap2010:ViewStateData Id="ExcelAppendRange_4" sap:VirtualizedContainerService.HintSize="314,87" />
+      <sap2010:ViewStateData Id="Sequence_65" sap:VirtualizedContainerService.HintSize="336,211">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExcelApplicationScope_6" sap:VirtualizedContainerService.HintSize="502,320" />
+      <sap2010:ViewStateData Id="Sequence_60" sap:VirtualizedContainerService.HintSize="524,2799">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_22">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,274</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_21">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,194</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,246 300,274</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_20">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,114</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,166 300,194</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Flowchart_3" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+            <av:Size x:Key="ShapeSize">60,75</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,114</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_109" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Sequence_95" sap:VirtualizedContainerService.HintSize="264,184">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_43" sap:VirtualizedContainerService.HintSize="314,318" />
+      <sap2010:ViewStateData Id="MessageBox_3" sap:VirtualizedContainerService.HintSize="314,59" />
+      <sap2010:ViewStateData Id="Sequence_94" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_23">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,634.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_16">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,554</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,605 300,634.5</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_11">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,474</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,526 300,554</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_9">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,374</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,426 300,474</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_13">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,294</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,346 300,374</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_12">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,194.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,246.5 300,294</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_1">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">200,104.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,155.5 300,194.5</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="714,911">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+            <av:Size x:Key="ShapeSize">60,75</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,104.5</av:PointCollection>
+            <x:Double x:Key="Width">700</x:Double>
+            <x:Double x:Key="Height">875.02</x:Double>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Main_1" sap:VirtualizedContainerService.HintSize="754,991" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>
